@@ -50,6 +50,7 @@ PARITY_MAP: dict[str, str] = {
     "TaggingSuggestionsEvent": "TaggingSuggestionsEvent",
     "LibraryReadyEvent": "LibraryReadyEvent",
     "JobErrorEvent": "JobErrorEvent",
+    "TaggingErrorEvent": "TaggingErrorEvent",
     "SearchResultEvent": "SearchResultEvent",
     # Metadata
     "MusicBrainzArtist": "MusicBrainzArtist",
@@ -77,6 +78,8 @@ INTERNAL_MODELS: set[str] = {
     # Internal backend token – never constructed by the frontend.
     # The frontend only sees the raw `stream_token` string inside AcquireResponse.
     "StreamToken",
+    # Internal base class providing camelCase serialisation — not a public schema.
+    "_CamelModel",
 }
 
 

@@ -6,7 +6,7 @@ services:
       - ./data/library:/music:ro
       - navidrome_data:/data
     ports:
-      - "4533:4533"
+      - "15000:4533"
 
   harmonia-backend:
     build: ./backend
@@ -15,7 +15,7 @@ services:
       - ./data:/data
     env_file: .env
     ports:
-      - "8000:8000"
+      - "15001:8000"
     depends_on:
       - navidrome
 
@@ -24,7 +24,7 @@ services:
     restart: unless-stopped
     env_file: .env
     ports:
-      - "3000:3000"
+      - "15002:3000"
     depends_on:
       - harmonia-backend
 

@@ -181,6 +181,12 @@ export interface JobErrorEvent {
   recoverable: boolean;
 }
 
+/** Emitted when beets or MusicBrainz lookup fails; tagging panel falls back to manual entry. */
+export interface TaggingErrorEvent {
+  type: "tagging_error";
+  message: string;
+}
+
 /** Streams a single search result to the frontend as it resolves. */
 export interface SearchResultEvent {
   type: "search_result";
@@ -196,6 +202,7 @@ export type JobWSEvent =
   | DownloadCompleteEvent
   | TaggingSuggestionsEvent
   | LibraryReadyEvent
+  | TaggingErrorEvent
   | JobErrorEvent;
 
 /**
@@ -226,6 +233,7 @@ export const JOB_WS_EVENT_TYPES = {
   download_complete: "download_complete" as const,
   tagging_suggestions: "tagging_suggestions" as const,
   library_ready: "library_ready" as const,
+  tagging_error: "tagging_error" as const,
   job_error: "job_error" as const,
 } satisfies Record<JobWSEvent["type"], JobWSEvent["type"]>;
 

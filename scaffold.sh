@@ -569,6 +569,29 @@ mkdir -p "$PROJECT/data/"{raw,library}
 touch "$PROJECT/data/.gitkeep"
 echo "✓ Data directories created"
 
+
+# =============================================================================
+# 7.5 Clean up — remove loose root-level files left over after scaffold
+# =============================================================================
+# The scaffold copies pre-written files into their correct locations inside
+# backend/ and frontend/. The originals in the root are now duplicates.
+
+ROOT_LOOSE_FILES=(
+  auth.py auth_router.py config.py conftest.py database.py
+  GlassCard.tsx main.py middleware.py package.json plugin_base.py
+  requirements-dev.txt requirements.txt schemas.py tailwind.config.ts
+  test_schema_parity.py types.ts
+)
+
+for f in "${ROOT_LOOSE_FILES[@]}"; do
+  [ -f "$f" ] && rm "$f" && echo "  removed $f"
+done
+
+# Remove root-level __pycache__ if it got created
+[ -d "__pycache__" ] && rm -rf "__pycache__" && echo "  removed __pycache__/"
+
+echo "✓ Root-level duplicates cleaned up"
+
 # =============================================================================
 # 8. Git init + initial commit (skipped if git user not configured)
 # =============================================================================
