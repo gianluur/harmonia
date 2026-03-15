@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: #0F0E17;
+    --foreground: #F0EEF8;
+  }
+
+  body {
+    background-color: #0F0E17;
+    color: #F0EEF8;
+    font-family: "Inter Variable", "Inter", system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Scrollbar styling — matches the navy/purple palette */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: rgba(155, 135, 255, 0.3); border-radius: 9999px; }
+  ::-webkit-scrollbar-thumb:hover { background: rgba(155, 135, 255, 0.5); }
+}

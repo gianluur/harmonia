@@ -1,0 +1,19 @@
+# Harmonia – Backend Python dependencies
+# Pin every version. Bump deliberately, never by accident.
+# Runtime ---------------------------------------------------------------
+fastapi==0.115.6
+uvicorn[standard]==0.32.1
+pydantic[email]==2.10.3
+pydantic-settings==2.7.0          # Settings class for env var loading
+aiosqlite==0.20.0                  # Async SQLite driver
+python-jose[cryptography]==3.3.0   # JWT encode/decode (HMAC-SHA256)
+passlib[bcrypt]==1.7.4             # bcrypt password hashing
+structlog==24.4.0                  # Structured logging (JSON + pretty)
+apscheduler==3.10.4                # Background workers (GC, yt-dlp updater)
+httpx==0.27.2                      # Async HTTP client (MB + Cover Art proxy)
+mutagen==1.47.0                    # ID3 / Vorbis tag writing
+beets==2.1.0                       # MusicBrainz tagging pipeline
+slowapi==0.1.9                     # Rate limiting for /api/logs/client
+
+# Dev / test ------------------------------------------------------------
+# Install via: pip install -r requirements-dev.txt

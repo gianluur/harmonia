@@ -1,0 +1,25 @@
+services:
+  harmonia-backend:
+    build: ./backend
+    environment:
+      - HARMONIA_MOCK_PLUGINS=true
+      - JWT_SECRET=test-secret-for-ci-only-not-used-in-production
+      - NAVIDROME_URL=http://mock-navidrome:4533
+      - NAVIDROME_ADMIN_USER=admin
+      - NAVIDROME_ADMIN_PASS=admin
+      - NAVIDROME_APP_USER=app
+      - NAVIDROME_APP_PASS=app
+      - MUSICBRAINZ_CONTACT_URL=https://github.com/test/harmonia
+      - LOG_FORMAT=pretty
+    ports:
+      - "8000:8000"
+
+  harmonia-frontend:
+    build: ./frontend
+    environment:
+      - NEXT_PUBLIC_BACKEND_URL=http://localhost:8000
+      - NEXT_PUBLIC_NAVIDROME_URL=http://localhost:4533
+    ports:
+      - "3000:3000"
+    depends_on:
+      - harmonia-backend
