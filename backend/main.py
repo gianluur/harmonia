@@ -192,11 +192,11 @@ def create_app() -> FastAPI:
     application.websocket("/ws/{job_id}")(job_websocket)
 
     # Uncomment as each router is implemented (Phase 1 → 3):
-    # from backend.routers.acquire  import router as acquire_router
+    from backend.routers.acquire  import router as acquire_router
     # from backend.routers.search   import router as search_router
     # from backend.routers.metadata import router as metadata_router
     # from backend.routers.system   import router as system_router
-    # application.include_router(acquire_router)
+    application.include_router(acquire_router)
     # application.include_router(search_router)
     # application.include_router(metadata_router)
     # application.include_router(system_router)

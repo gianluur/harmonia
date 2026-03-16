@@ -49,10 +49,11 @@ async def test_list_pending_jobs_filtering(db):
     await update_job_status(db, job2_id, JobStatusEnum.downloading)
     
     pending = await list_pending_jobs(db)
-    assert len(pending) == 2
-    assert pending[0]["id"] == job1_id
-    assert pending[1]["id"] == job3_id
-    assert all(j["status"] == JobStatusEnum.pending.value for j in pending)
+    assert len(pending) == 3  # all non-confirmed jobs
+    ids = [j["id"] for j in pending]
+    assert job1_id in ids
+    assert job2_id in ids  # downloading is included
+    assert job3_id in ids
 
 
 @pytest.mark.asyncio

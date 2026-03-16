@@ -144,13 +144,18 @@ async def update_job_status(
 
 async def list_pending_jobs(db: AsyncDB) -> list[JobRow]:
     """
-    Return all jobs whose status is 'pending'.
+    Return all jobs that are awaiting tag confirmation — i.e. every job
+    whose status is NOT 'confirmed'.
+
+    This includes jobs in states: pending, downloading, tagging, error.
+    Powers the frontend "Pending" tray so users can return to in-progress
+    or failed acquisitions.
 
     Returns:
         List of JobRow dicts, ordered by created_at ascending.
     """
     rows = await db.fetchall(
-        "SELECT * FROM jobs WHERE status = ? ORDER BY created_at",
-        (JobStatusEnum.pending.value,),
+        "SELECT * FROM jobs WHERE status != ? ORDER BY created_at",
+        (JobStatusEnum.confirmed.value,),
     )
     return [dict(row) for row in rows]

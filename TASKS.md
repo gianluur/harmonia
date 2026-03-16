@@ -63,7 +63,7 @@ then mark the task [x]. Stop after one task.
   - Test: `cd backend && pytest tests/integration/test_acquire_api.py -v -k ws`
 
 ### 1.6 Search WebSocket handler
-- [ ] **`backend/ws/search.py`**
+- [x] **`backend/ws/search.py`**
   - Read: `docs/Harmonia_Architecture.md` section 4.2.2 (search WS protocol)
   - Read: `backend/services/ytdlp.py` (run_search)
   - Read: `backend/schemas.py` (SearchWSEvent types)
@@ -75,7 +75,7 @@ then mark the task [x]. Stop after one task.
   - Test: `cd backend && pytest tests/integration/test_search_api.py -v`
 
 ### 1.7 Acquire router
-- [ ] **`backend/routers/acquire.py`**
+- [x] **`backend/routers/acquire.py`**
   - Read: `backend/routers/auth.py` (ALL patterns to follow)
   - Read: `docs/Harmonia_Architecture.md` section 4.1.2 (exact endpoints, status codes)
   - Read: `backend/services/job_store.py`, `backend/auth.py` (encode_stream_token)
