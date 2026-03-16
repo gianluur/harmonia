@@ -94,7 +94,7 @@ then mark the task [x]. Stop after one task.
   - Test: `cd backend && pytest tests/integration/test_search_api.py -v`
 
 ### 1.9 Auth integration tests
-- [ ] **`backend/tests/integration/test_auth_api.py`**
+- [x] **`backend/tests/integration/test_auth_api.py`**
   - Read: `docs/Harmonia_Testing_Observability.md` section 4.1 (all 11 test scenarios)
   - Read: `backend/tests/conftest.py` (client, auth_client fixtures)
   - Implement all 11 tests including request_id header tests and error envelope shape test
