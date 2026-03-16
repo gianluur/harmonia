@@ -26,7 +26,7 @@ then mark the task [x]. Stop after one task.
   - Test: `cd backend && pytest tests/unit/test_job_store.py -v`
 
 ### 1.2 Auth unit tests
-- [ ] **`backend/tests/unit/test_auth.py`**
+- [x] **`backend/tests/unit/test_auth.py`**
   - Read: `backend/auth.py` (all functions already implemented)
   - Read: `docs/Harmonia_Testing_Observability.md` section 3.1.1 (exact test names)
   - Implement all 9 tests from the spec: password hash/verify, JWT roundtrip/expiry/wrong secret, stream token roundtrip/expiry/wrong job
