@@ -30,11 +30,26 @@ from pathlib import Path
 from typing import AsyncGenerator, Generator
 from unittest.mock import AsyncMock, MagicMock
 
+import os
 import pytest
 import pytest_asyncio
 import respx
 from fastapi import FastAPI
 from httpx import ASGITransport, AsyncClient
+
+# ---------------------------------------------------------------------------
+# Environment variables for Settings
+# ---------------------------------------------------------------------------
+# Set required environment variables before any backend module imports config.
+os.environ.update({
+    "NAVIDROME_URL": "http://mock-navidrome:4533",
+    "NAVIDROME_ADMIN_USER": "admin",
+    "NAVIDROME_ADMIN_PASS": "admin",
+    "NAVIDROME_APP_USER": "appuser",
+    "NAVIDROME_APP_PASS": "apppass",
+    "JWT_SECRET": "test-secret-do-not-use-in-production-" + "x" * 10,
+    "MUSICBRAINZ_CONTACT_URL": "https://example.com/harmonia",
+})
 
 # ---------------------------------------------------------------------------
 # Paths

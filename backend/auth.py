@@ -28,15 +28,9 @@ from datetime import UTC, datetime, timedelta
 from typing import Any
 
 from jose import ExpiredSignatureError, JWTError, jwt
-from passlib.context import CryptContext
+import bcrypt as _bcrypt
 
 from backend.config import settings
-
-# ---------------------------------------------------------------------------
-# bcrypt context
-# ---------------------------------------------------------------------------
-
-_pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto", bcrypt__rounds=12)
 
 # ---------------------------------------------------------------------------
 # Custom exceptions
@@ -66,7 +60,7 @@ def hash_password(plain: str) -> str:
 
     Never store or log the plain-text password after calling this.
     """
-    return _pwd_context.hash(plain)
+    return _bcrypt.hashpw(plain.encode(), _bcrypt.gensalt(rounds=12)).decode()
 
 
 def verify_password(plain: str, hashed: str) -> bool:
@@ -74,7 +68,7 @@ def verify_password(plain: str, hashed: str) -> bool:
     Return True if plain matches the bcrypt hash, False otherwise.
     Constant-time comparison — safe against timing attacks.
     """
-    return _pwd_context.verify(plain, hashed)
+    return _bcrypt.checkpw(plain.encode(), hashed.encode())
 
 
 # ---------------------------------------------------------------------------

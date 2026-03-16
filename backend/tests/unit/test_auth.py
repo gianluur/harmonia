@@ -8,6 +8,7 @@ from unittest.mock import patch
 
 import pytest
 from jose import jwt
+import passlib.handlers.bcrypt
 
 from backend.auth import (
     hash_password,

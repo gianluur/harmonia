@@ -9,6 +9,12 @@ Key principles: one interface, instant gratification (stream while downloading),
 ownership (properly tagged local library), privacy by default (all external calls proxied),
 extensibility (plugin contract for new source backends).
 
+## Files to ignore
+  Please avoid reading or searching these files/directories:
+  - `node_modules/`, `dist/`, `.git/`
+  - `*.log` files
+  - `data.json`, `large_logs.txt`, `secret_keys.env`
+
 ## Spec documents — read these before implementing any file
 - `docs/Harmonia_Architecture.md` — complete architecture, API contracts, DB schema, ADRs
 - `docs/Harmonia_Testing_Observability.md` — test spec, fixture strategy, coverage requirements
@@ -17,6 +23,8 @@ extensibility (plugin contract for new source backends).
 - `backend/routers/auth.py` — read before writing ANY router (establishes all patterns)
 - `backend/tests/conftest.py` — read before writing ANY test (all fixtures defined here)
 - `frontend/src/components/ui/GlassCard.tsx` — read before writing ANY component (8 patterns)
+
+Before you start, read .claudecodeignore
 
 ## Running the project
 

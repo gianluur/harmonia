@@ -1,0 +1,10 @@
+# .claudecodeignore
+data.json
+large_logs.txt
+secret_keys.env
+
+# It's also a good idea to ignore these by default to save money:
+node_modules/
+dist/
+.git/
+*.log
