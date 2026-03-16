@@ -33,14 +33,14 @@ then mark the task [x]. Stop after one task.
   - Test: `cd backend && pytest tests/unit/test_auth.py -v`
 
 ### 1.3 Job store unit tests
-- [ ] **`backend/tests/unit/test_job_store.py`**
+- [x] **`backend/tests/unit/test_job_store.py`**
   - Read: `docs/Harmonia_Testing_Observability.md` section 3.1.7 (exact test names)
   - Read: `backend/services/job_store.py` (just implemented)
   - Implement all 8 tests: valid transitions, invalid transitions, error/retry transitions
   - Test: `cd backend && pytest tests/unit/test_job_store.py -v`
 
 ### 1.4 yt-dlp service
-- [ ] **`backend/services/ytdlp.py`**
+- [x] **`backend/services/ytdlp.py`**
   - Read: `docs/Harmonia_Architecture.md` section 3.1 (search flow), 3.2 (acquisition flow)
   - Read: `backend/plugin_base.py` (DownloadEvent types)
   - Read: `backend/schemas.py` (SearchResult)
