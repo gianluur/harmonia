@@ -42,6 +42,7 @@ from backend.routers.auth import router as auth_router
 
 # WebSocket handlers
 from backend.ws.job import websocket_endpoint as job_websocket
+from backend.ws.search import websocket_endpoint as search_websocket   
 
 # Workers — imported for registration; implementations filled in Phase 1/2
 # from backend.workers.gc import run_gc_worker
@@ -187,6 +188,7 @@ def create_app() -> FastAPI:
     application.include_router(auth_router)
 
     # WebSocket endpoints
+    application.websocket("/ws/search")(search_websocket)
     application.websocket("/ws/{job_id}")(job_websocket)
 
     # Uncomment as each router is implemented (Phase 1 → 3):
