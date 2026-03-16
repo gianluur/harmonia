@@ -26,6 +26,9 @@ extensibility (plugin contract for new source backends).
 
 Before you start, read .claudecodeignore
 
+- Never run `python -c "import backend.*"` from inside the `backend/` folder — 
+  always run from project root: `cd ~/Documents/Projects/Harmonia && python -c "..."`
+
 ## Running the project
 
 ### Backend

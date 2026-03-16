@@ -51,7 +51,7 @@ then mark the task [x]. Stop after one task.
   - Test: `cd backend && pytest tests/unit/ -v -k ytdlp` (unit tests only, no integration yet)
 
 ### 1.5 Job WebSocket handler
-- [ ] **`backend/ws/job.py`**
+- [x] **`backend/ws/job.py`**
   - Read: `docs/Harmonia_Architecture.md` section 4.2.1 (job WS protocol)
   - Read: `backend/services/job_store.py` (get_job, update_job_status)
   - Read: `backend/schemas.py` (all JobWSEvent types)
