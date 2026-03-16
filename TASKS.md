@@ -86,7 +86,7 @@ then mark the task [x]. Stop after one task.
   - Note: list_pending_jobs() should return status != 'confirmed', not just status = 'pending'
 
 ### 1.8 Search router
-- [ ] **`backend/routers/search.py`**
+- [x] **`backend/routers/search.py`**
   - Read: `backend/routers/auth.py` (patterns)
   - Read: `docs/Harmonia_Architecture.md` section 4.1.2 (POST /api/search)
   - Implement: `POST /api/search` → 200 `{search_id}`, initiates WS search session

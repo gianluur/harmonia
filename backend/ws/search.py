@@ -45,6 +45,7 @@ from backend.services.ytdlp import YTDLPError, run_search
 
 logger = structlog.get_logger(__name__)
 
+
 # Idle timeout — close the connection if no client message arrives in this
 # many seconds.  Keeps idle connections from accumulating on the server.
 _IDLE_TIMEOUT_SECONDS = 60.0
@@ -212,6 +213,28 @@ async def websocket_endpoint(websocket: WebSocket) -> None:
     # Track the currently running search task so we can cancel it when
     # the client sends a new search or disconnects.
     current_task: asyncio.Task | None = None
+
+    # Check if there's a pending search for this request_id (initiated by POST /api/search)
+    pending_searches = getattr(websocket.app.state, "pending_searches", None)
+    if pending_searches and request_id in pending_searches:
+        query, url = pending_searches.pop(request_id)
+        search_id = request_id
+        search_log = log.bind(search_id=search_id)
+        search_log.info(
+            "search_ws_search_started_from_pending",
+            query=query,
+            url=url,
+        )
+        current_task = asyncio.create_task(
+            _run_search_session(
+                websocket=websocket,
+                query=query,
+                url=url,
+                search_id=search_id,
+                log=search_log,
+            )
+        )
+
 
     try:
         while True:

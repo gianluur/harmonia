@@ -425,12 +425,30 @@ async def ws_collect(client: AsyncClient, url: str, n_events: int) -> list[dict]
         assert events[0]["type"] == "download_progress"
         assert events[2]["type"] == "download_complete"
     """
-    collected: list[dict] = []
-    async with client.websocket_connect(url) as ws:
-        while len(collected) < n_events:
-            raw = await asyncio.wait_for(ws.receive_text(), timeout=10.0)
-            collected.append(json.loads(raw))
-    return collected
+    # If client supports websocket_connect, use it (httpx >= 0.24)
+    if hasattr(client, 'websocket_connect'):
+        collected: list[dict] = []
+        async with client.websocket_connect(url) as ws:
+            while len(collected) < n_events:
+                raw = await asyncio.wait_for(ws.receive_text(), timeout=10.0)
+                collected.append(json.loads(raw))
+        return collected
+    else:
+        # Fall back to FastAPI TestClient (synchronous)
+        from fastapi.testclient import TestClient
+        # Get the ASGI app from the transport
+        transport = client._transport
+        if not hasattr(transport, 'app'):
+            raise AttributeError("Client transport has no app attribute")
+        test_client = TestClient(app=transport.app, base_url=str(client.base_url))
+        # Pass cookies from the auth client to the WebSocket connection
+        cookies = dict(client.cookies)
+        with test_client.websocket_connect(url, cookies=cookies) as ws:
+            collected: list[dict] = []
+            while len(collected) < n_events:
+                raw = ws.receive_text()
+                collected.append(json.loads(raw))
+        return collected
 
 
 # ---------------------------------------------------------------------------

@@ -195,6 +195,7 @@ class SearchCompleteEvent(_CamelModel):
 
     model_config = ConfigDict(alias_generator=to_camel, populate_by_name=True, frozen=True)
 
+    type: Literal["search_complete"] = "search_complete"
     search_id: str
     total: int
 

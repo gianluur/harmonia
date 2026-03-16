@@ -112,6 +112,7 @@ export interface SearchResult {
 
 /** Signals that a search operation has finished and provides the total result count. */
 export interface SearchCompleteEvent {
+  type: "search_complete";
   searchId: string;
   total: number;
 }
