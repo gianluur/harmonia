@@ -105,7 +105,7 @@ then mark the task [x]. Stop after one task.
 ## Phase 2 — Tagging Pipeline
 
 ### 2.1 Proxy header sanitisation
-- [ ] **`backend/services/proxy.py`**
+- [x] **`backend/services/proxy.py`**
   - Read: `docs/Harmonia_Architecture.md` section 9.1 (header policy)
   - Read: `backend/config.py` (musicbrainz_user_agent property)
   - Implement: `sanitise_headers()`, `search_musicbrainz()`, `get_coverart()`
@@ -115,7 +115,7 @@ then mark the task [x]. Stop after one task.
   - Test: `cd backend && pytest tests/unit/test_proxy.py -v`
 
 ### 2.2 Proxy unit tests
-- [ ] **`backend/tests/unit/test_proxy.py`**
+- [x] **`backend/tests/unit/test_proxy.py`**
   - Read: `docs/Harmonia_Testing_Observability.md` section 3.1.3 (6 test names)
   - Implement all 6 tests
   - Test: `cd backend && pytest tests/unit/test_proxy.py -v`
